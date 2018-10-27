@@ -15,7 +15,7 @@ export default class Net extends EventEmitter {
         this.ws = new WebSocket(`ws://${window.location.hostname}:${port}`)
 
         this.ws.addEventListener('open', (event) => {
-            console.log('connected on port' + port)
+            console.log(`WS connected on port: ${port}`)
 
             this.emit('open')
         })

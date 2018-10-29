@@ -6,6 +6,7 @@ net.connect()
 console.log(net)
 
 net.on('open', () => {
-    net.send('login', 'a quick test message!')
-    net.send('login', 'should see this!')
+    net.send('login', {
+        name: 'jonah',
+    })
 })

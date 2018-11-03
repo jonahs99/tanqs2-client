@@ -10,3 +10,5 @@ net.on('open', () => {
         name: 'jonah',
     })
 })
+
+net.on('update', (message) => console.log(message))

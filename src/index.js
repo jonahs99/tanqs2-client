@@ -1,9 +1,8 @@
-import Net from './net.js'
+import Net from './net'
+import Game from './game'
 
 const net = new Net()
-net.connect()
-
-console.log(net)
+const game = new Game(net)
 
 net.on('open', () => {
     net.send('login', {
@@ -11,4 +10,4 @@ net.on('open', () => {
     })
 })
 
-net.on('update', (message) => console.log(message))
+net.connect()

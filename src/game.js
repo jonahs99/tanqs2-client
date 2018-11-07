@@ -43,8 +43,6 @@ export default class Game {
         }
         
         apply_changes(this.entities, data.update)
-
-        console.log(this.input.data)
     }
 
     render_loop() {

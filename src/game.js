@@ -1,4 +1,5 @@
 import apply_changes from "./util/apply-changes"
+import deep_copy from "./util/deep-copy"
 
 import init_canvas from './gfx/canvas'
 import Graphics from './gfx/gfx'
@@ -17,9 +18,8 @@ export default class Game {
     }
 
     update(data) {
-
         for (let entity_id in data.init) {
-            this.entities[entity_id] = data.init[entity_id]
+            this.entities[entity_id] = deep_copy(data.init[entity_id])
 
             const entity = this.entities[entity_id]
             if (entity.model) {
@@ -28,12 +28,17 @@ export default class Game {
         }
         
         for (let entity_id in data.delete) {
+            const entity = this.entities[entity_id]
+            
+            if (entity.model) {
+                this.main_scene.remove_model(entity)
+            }
             delete this.entities[entity_id]
         }
         
         apply_changes(this.entities, data.update)
 
-        console.log(this.entities)
+        console.log(data)
     }
 
     render_loop() {

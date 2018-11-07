@@ -9,7 +9,13 @@ export default class MainScene {
     }
 
     add_model(entity) {
-        this.children.push(new Models[entity.model](entity))
+        const model = new Models[entity.model](entity)
+        entity._model = model
+        this.children.push(model)
+    }
+
+    remove_model(entity) {
+        this.children.splice(this.children.indexOf(entity._model), 1)
     }
 
     draw(context) {

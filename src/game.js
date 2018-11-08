@@ -19,8 +19,10 @@ export default class Game {
 
         net.on('update', this.update.bind(this))
 
-        requestAnimationFrame(this.render_loop.bind(this))
-        setInterval(this.send_input.bind(this), 1000)
+        net.on('open', () => {
+            requestAnimationFrame(this.render_loop.bind(this))
+            setInterval(this.send_input.bind(this), 100)
+        })
     }
     
     update(data) {
@@ -43,6 +45,8 @@ export default class Game {
         }
         
         apply_changes(this.entities, data.update)
+
+        console.log(this.entities[0])
     }
 
     render_loop() {

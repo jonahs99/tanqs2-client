@@ -19,7 +19,7 @@ export default class Input {
             const rect = canvas.getBoundingClientRect()
             this._changes.mouse = [
                 ev.clientX - rect.left - canvas.width/2,
-                ev.clientY - rect.right - canvas.height/2
+                ev.clientY - rect.top - canvas.height/2
             ]
         })
     }

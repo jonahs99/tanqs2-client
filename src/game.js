@@ -4,7 +4,6 @@ import deep_copy from "./util/deep-copy"
 import init_canvas from './gfx/canvas'
 import Graphics from './gfx/gfx'
 import Input from './input'
-import draw_scene from './gfx/scene'
 
 export default class Game {
     constructor(net) {
@@ -45,14 +44,12 @@ export default class Game {
         }
         
         apply_changes(this.entities, data.update)
-
-        console.log(this.entities[0])
     }
 
     render_loop() {
         requestAnimationFrame(this.render_loop.bind(this))
 
-        draw_scene(this.main_scene, this.context)
+        this.main_scene.draw(this.context)
     }
 
     send_input() {

@@ -15,9 +15,10 @@ export default class TankModel extends SceneNode {
         context.translate(e.pos[0], e.pos[1])
         context.rotate(e.rot)
 
-        context.fillStyle = "#af0000"
-        context.strokeStyle = "#960000"
+        context.fillStyle = "#f06"
+        context.strokeStyle = "#444"
         context.lineWidth = 3
+        context.lineJoin = 'round'
 
         const tread_wid = 6
 
@@ -29,8 +30,8 @@ export default class TankModel extends SceneNode {
 
         // Treads
         context.beginPath()
-        context.rect(-e.rad - tread_wid/2, -e.rad - tread_wid/2, 2 * (e.rad + tread_wid/2), 2 * tread_wid)
-        context.rect(-e.rad - tread_wid/2, e.rad - tread_wid/2, 2 * (e.rad + tread_wid/2), 2 * tread_wid)
+        context.rect(-e.rad - tread_wid/2, -e.rad - tread_wid, 2 * (e.rad + tread_wid/2), 2 * tread_wid)
+        context.rect(-e.rad - tread_wid/2, e.rad - tread_wid, 2 * (e.rad + tread_wid/2), 2 * tread_wid)
         context.fill()
         context.stroke()
 

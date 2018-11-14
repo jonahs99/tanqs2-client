@@ -1,31 +1,48 @@
 import SceneNode from './scene'
+import CameraNode from './camera'
 import Models from './models'
 
-export default class Graphics extends SceneNode {
+export default class Graphics {
 
-    constructor() {
-        super()
+    constructor(entities) {
+        this.main_scene = new CameraNode(entities)
 
-        this.world_node = new SceneNode()
+        this.scene_layers = {
+            'world': this.main_scene
+        }
 
-        this.add_child(this.world_node)
+        this.register(entities)
+    }
+
+    register(entities) {
+        entities.on('add', entity => {
+            if (entity.tracking) {
+                this.main_scene.view = entity
+                console.log(entity)
+                return
+            }
+
+            if (entity.model) this.add_model(entity)
+        })
+
+        entities.on('remove', entity => {
+            if (entity.model) this.remove_model(entity)
+        })
     }
 
     add_model(entity) {
-        const model = new Models[entity.model](entity)
+        const model = new Models[entity.model.type](entity)
         entity._model = model
         
-        this.world_node.add_child(model)
+        this.scene_layers[entity.model.layer].add_child(model)
     }
 
     remove_model(entity) {
-        this.world_node.remove_child(entity._model)
+        this.main_scene.remove_child(entity._model)
     }
 
-    _draw(context) {
-        context.clearRect(0, 0, context.canvas.width, context.canvas.width)
-
-        context.translate(context.canvas.width / 2, context.canvas.height / 2)
+    draw(context) {
+        this.main_scene.draw(context)
     }
 
 }

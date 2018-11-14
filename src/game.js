@@ -4,52 +4,32 @@ import deep_copy from "./util/deep-copy"
 import init_canvas from './gfx/canvas'
 import Graphics from './gfx/gfx'
 import Input from './input'
+import Entities from "./entities";
 
 export default class Game {
     constructor(net) {
-        this.net = net
-
-        this.entities = {}
-
         this.context = init_canvas()
 
-        this.main_scene = new Graphics()
+        this.net = net
+        this.entities = new Entities(net)
         this.input = new Input(this.context.canvas)
+        
+        this.graphics = new Graphics(this.entities)
 
-        net.on('update', this.update.bind(this))
-
-        net.on('open', () => {
-            requestAnimationFrame(this.render_loop.bind(this))
-            setInterval(this.send_input.bind(this), 100)
-        })
+        net.on('open', this.start.bind(this))
     }
-    
-    update(data) {
-        for (let entity_id in data.init) {
-            this.entities[entity_id] = deep_copy(data.init[entity_id])
 
-            const entity = this.entities[entity_id]
-            if (entity.model) {
-                this.main_scene.add_model(entity)
-            }
-        }
-        
-        for (let entity_id in data.delete) {
-            const entity = this.entities[entity_id]
-            
-            if (entity.model) {
-                this.main_scene.remove_model(entity)
-            }
-            delete this.entities[entity_id]
-        }
-        
-        apply_changes(this.entities, data.update)
+    start() {
+        const input_interval = 50
+
+        requestAnimationFrame(this.render_loop.bind(this))
+        setInterval(this.send_input.bind(this), input_interval)
     }
 
     render_loop() {
         requestAnimationFrame(this.render_loop.bind(this))
 
-        this.main_scene.draw(this.context)
+        this.graphics.draw(this.context)
     }
 
     send_input() {

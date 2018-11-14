@@ -5,9 +5,11 @@ const net = new Net()
 const game = new Game(net)
 
 net.on('open', () => {
-    net.send('login', {
-        name: 'jonah',
-    })
+    setTimeout(() => {
+        net.send('login', {
+            name: 'jonah',
+        })
+    }, 100)
 })
 
 net.connect()

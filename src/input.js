@@ -22,5 +22,19 @@ export default class Input {
                 ev.clientY - rect.top - canvas.height/2
             ]
         })
+
+        document.addEventListener('mousedown', ev => {
+            switch (ev.button) {
+                case 0: // LEFT
+                    this._changes.left_button = true
+                    break
+                case 1: // MIDDLE
+                    this._changes.middle_button = true
+                    break
+                case 2: // RIGHT
+                    this._changes.right_button = true
+                    break
+            }
+        })
     }
 }

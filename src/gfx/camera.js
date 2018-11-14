@@ -12,6 +12,8 @@ export default class CameraNode extends SceneNode {
         context.clearRect(0, 0, context.canvas.width, context.canvas.width)
         context.translate(context.canvas.width / 2, context.canvas.height / 2)
 
+        context.scale(1.4, 1.4)
+
         if (!this.view) return
 
         if (this.view.tracking !== -1) {

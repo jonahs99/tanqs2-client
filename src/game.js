@@ -16,6 +16,8 @@ export default class Game {
         
         this.graphics = new Graphics(this.entities)
 
+        this._last_frame = Date.now()
+
         net.on('open', this.start.bind(this))
     }
 
@@ -28,6 +30,10 @@ export default class Game {
 
     render_loop() {
         requestAnimationFrame(this.render_loop.bind(this))
+
+        const now = Date.now()
+        this.ellapsed = now - this._last_frame
+        this._last_frame = now
 
         this.graphics.draw(this.context)
     }

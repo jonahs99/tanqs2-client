@@ -15,7 +15,7 @@ export default class TankModel extends SceneNode {
         context.translate(e.pos[0], e.pos[1])
         context.rotate(e.rot)
 
-        context.fillStyle = "#f06"
+        context.fillStyle = e.clr
         context.strokeStyle = "#444"
         context.lineWidth = 3
         context.lineJoin = 'round'

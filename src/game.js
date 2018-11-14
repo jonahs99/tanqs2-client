@@ -35,6 +35,7 @@ export default class Game {
         this.ellapsed = now - this._last_frame
         this._last_frame = now
 
+        this.entities.interpolate()
         this.graphics.draw(this.context)
     }
 

@@ -19,6 +19,8 @@ export default class CameraNode extends SceneNode {
         if (this.view.tracking !== -1) {
             const entity = this.entities.entities[this.view.tracking]
 
+            if (!entity) return
+
             context.translate(-entity.pos[0], -entity.pos[1])
         }
     }

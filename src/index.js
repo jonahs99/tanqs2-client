@@ -1,4 +1,4 @@
-import Net from './net'
+import Net from './net/net'
 import Game from './game'
 
 const net = new Net()
@@ -9,7 +9,7 @@ net.on('open', () => {
         net.send('login', {
             name: 'jonah',
         })
-    }, 100)
+    }, 1000)
 })
 
 net.connect()

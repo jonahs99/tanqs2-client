@@ -10,7 +10,7 @@ export default class PlayFieldModel extends SceneNode {
     _draw(context) {
         const size = this.entity.size
 
-        context.fillStyle = '#222'
+        context.fillStyle = this.entity.clr
 
         context.beginPath()
         context.rect(-size[0] / 2, -size[1] / 2, size[0], size[1])

@@ -12,6 +12,8 @@ export default class FlagModel extends SceneNode {
     _draw(context) {
         const e = this.entity
 
+        if (e.hidden) return
+
         context.translate(e.pos[0], e.pos[1])
 
         context.fillStyle = "#ccc"

@@ -14,8 +14,8 @@ export default class WallModel extends SceneNode {
         const poly = e.poly
 
         context.fillStyle = e.clr
-        context.strokeStyle = '#444'
-        context.lineWidth = 3
+        context.strokeStyle = '#bbb'
+        context.lineWidth = 5
         context.lineJoin = 'round'
 
         context.beginPath()

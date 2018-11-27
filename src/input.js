@@ -15,6 +15,9 @@ export default class Input {
     }
 
     register_events(canvas) {
+        // Disables the right-click menu
+        window.addEventListener('contextmenu', ev => ev.preventDefault())
+
         document.addEventListener('mousemove', ev => {
             const rect = canvas.getBoundingClientRect()
             this._changes.mouse = [

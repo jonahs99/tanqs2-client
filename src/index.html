@@ -2,13 +2,37 @@
 
 <html>
 	<style>
-		body, canvas {
+		html, body, canvas {
 			margin: 0;
 			padding: 0;
+
+			display: block;
 		}
+
+		.overlay {
+			position: absolute;
+			top: 0;
+
+			font-family: monospace;
+		}
+
+		.title {
+			z-index: 1;
+	
+			color: #eee;
+
+			font-family: monospace;
+			font-size: 72px;
+		}
+
 	</style>
 	<body>
 		<canvas id="canvas">Your browser does not support the HTML5 canvas.</canvas>
+
+		<div class="overlay">
+			<h1 class="title"> tanqs.io </h1>
+		</div>
+		
 		<script src="main.js"></script>
 	</body>
 </html>

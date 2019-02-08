@@ -27,6 +27,10 @@ export default class Net extends EventEmitter {
                 this.emit(message[0], message[1])
             }
         })
+
+		this.ws.addEventListener('close', (event) => {
+			this.emit('close')
+		})
     }
 
     send(type, data) {

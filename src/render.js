@@ -5,6 +5,8 @@ const modelz = {
 	'tank': 1,
 }
 
+let COUNT = 0
+
 export default class Renderer {
 	constructor (dom) {
 		this.ctx = dom.ctx	
@@ -25,14 +27,19 @@ export default class Renderer {
 				(modelz[a.model] == modelz[b.model] && a.style > b.style))
 
 		for (let entity of entities) {
-			models[entity.model](ctx, entity)
+			if (!models[entity.model]) console.error(`No model '${entity.model}'`)
+
+			ctx.save()
+			models[entity.model].draw(ctx, entity)
+			ctx.restore()
 		}
 	}
 
 	transform(state) {
 		const ctx = this.ctx
-		
-		const scl = Math.max(ctx.canvas.width/1200, ctx.canvas.height/1200)
+
+		const view_width = 1550
+		const scl = Math.max(ctx.canvas.width/view_width, ctx.canvas.height/view_width)
 		ctx.scale(scl, scl)
 
 		const view = state.client.view

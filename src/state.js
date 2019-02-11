@@ -8,8 +8,9 @@ export default class State {
 
 		this._diff_buffer = []
 	
-		this.delay_ticks = 1.5
-	
+		this.delay_ticks = 5
+		this.max_delta = 4
+
 		net.on('init', data => {
 			this._timer.add_sync(data.time)
 			this._state = data.state
@@ -30,7 +31,10 @@ export default class State {
 		if (this._end_time) {
 			const snap_time = this._timer.get_time() - delay
 
-			const delta = (snap_time - this._start_time) / (this._end_time - this._start_time)
+			let delta = (snap_time - this._start_time) / (this._end_time - this._start_time)
+			if (delta > this.max_delta) {
+				delta = this.max_delta
+			}
 			apply_interps(this._state, delta)
 
 			return this._state
@@ -42,12 +46,15 @@ export default class State {
 	advance_buffer(time) {
 		while (this._diff_buffer.length > 1 && this._diff_buffer[0].time <= time) {
 			const diff = this._diff_buffer.shift()
-			const next = this._diff_buffer[0]
 			
 			apply_diff(this._state, diff.state)
-			mark_interps(this._state, next.state)
-
 			this._start_time = diff.time
+		}
+
+		if (this._diff_buffer.length > 0) {	
+			const next = this._diff_buffer[0]
+
+			mark_interps(this._state, next.state)
 			this._end_time = next.time
 		}
 	}

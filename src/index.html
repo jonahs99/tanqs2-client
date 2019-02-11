@@ -4,39 +4,32 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<link href="https://fonts.googleapis.com/css?family=Nunito:700" rel="stylesheet"> 
+
 		<title>tanqs.io</title>
+		
 		<style>
 			html, body, canvas {
 				margin: 0;
 				padding: 0;
 
 				display: block;
+	
+				font-family: 'Nunito', sans-serif;
 			}
-
-			.overlay {
-				position: absolute;
-				top: 0;
-
-				font-family: monospace;
-			}
-
-			.title {
-				z-index: 1;
-		
-				color: #eee;
-
-				font-family: monospace;
-				font-size: 72px;
-			}
-
 		</style>
 	</head>
 	<body>
-		<canvas id="canvas">Your browser does not support the HTML5 canvas.</canvas>
+		<div id="app"></div>
 
+		<canvas id="canvas">Your browser does not support the HTML5 canvas.</canvas>
+	
 		<!--
 		<div class="overlay">
-			<h1 class="title"> tanqs.io </h1>
+			<h1 class="title"> tanqs </h1>
+			<input type="text" placeholder="enter a nickname"></input>
+			<button id="join">join</button>
 		</div>
 		-->
 		

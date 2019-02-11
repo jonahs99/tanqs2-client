@@ -1,7 +1,7 @@
 const canvas = document.getElementById('canvas')
 const ctx = canvas.getContext('2d')
 
-canvas.style.background = '#181818'
+canvas.style.background = '#222'
 
 function resize() {
 	canvas.width = window.innerWidth

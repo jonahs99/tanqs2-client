@@ -1,7 +1,8 @@
 import Net from './net/net'
 import State from './state'
-import dom from './dom'
 import Renderer from './render'
+import UI from './ui'
+import dom from './dom'
 
 const net = new Net()
 const state = new State(net)
@@ -13,21 +14,19 @@ net.on('open', () => {
 
 net.on('init', (msg) => {
 	console.log('init event received:')
-	
-	//requestAnimationFrame(render)
 
-	setTimeout(() => {
-		net.send('join', {})
-	}, 4000)
+	UI.client = state._state.client
+	UI.$on('join', () => { net.send('join', {}) })
+
+	requestAnimationFrame(render)
 })
-
-net.on('init', console.log)
-net.on('diff', console.log)
-net.on('diff', msg => console.log(JSON.stringify(state.get_state().entities, null, 2)))
 
 net.on('close', () => {
 	console.log('close event received.')
 })
+
+net.on('init', console.log)
+net.once('diff', console.log)
 
 net.connect()
 

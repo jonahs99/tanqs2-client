@@ -8,7 +8,7 @@ export default class State {
 
 		this._diff_buffer = []
 	
-		this.delay_ticks = 5
+		this.delay_ticks = 1.5
 		this.max_delta = 4
 
 		net.on('init', data => {

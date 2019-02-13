@@ -38,8 +38,16 @@ export default class Renderer {
 	transform(state) {
 		const ctx = this.ctx
 
-		const view_width = 1550
-		const scl = Math.max(ctx.canvas.width/view_width, ctx.canvas.height/view_width)
+		// Scale the canvas
+		const view_area = 1000 * 1100
+		const max_aspect = 2
+		const max_length = Math.sqrt(view_area / max_aspect) * max_aspect
+
+		const canvas_area = canvas.width * canvas.height
+		const scl = Math.max(
+			Math.sqrt(canvas_area / view_area),
+			canvas.width / max_length,
+			canvas.height / max_length)
 		ctx.scale(scl, scl)
 
 		const view = state.client.view

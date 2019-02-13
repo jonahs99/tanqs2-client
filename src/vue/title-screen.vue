@@ -1,6 +1,6 @@
 <template>
 	<div class="center-container">
-		<h1 class="title"> tanqs </h1>
+		<h1 class="title unselectable"> tanqs </h1>
 		<form v-on:submit.prevent="submitJoin">
 			<input type="text" class="Text" placeholder="enter a nickname" v-model="nickname">
 			<input type="submit" class="Button" id="join" value="join!">
@@ -51,8 +51,6 @@
 
 		color: #eee;
 		text-shadow: rgba(0, 0, 0, 0.5) 0px 4px;
-
-		user-select: none;
 	}
 
 	form {
@@ -104,6 +102,18 @@
 		box-shadow: 0 0 10px #a4ffb5, 0 7px 0 #009058;
 		text-shadow: 0 3px 0 #00a269, 0 0 10px #ffffff;
 	}
+
+	.Button:active {
+		top: -2px;
+		background: #3dffb7;
+		box-shadow: 0 0 10px #a4ffb5, 0 4px 0 #009058;
+		text-shadow: 0 3px 0 #00a269, 0 0 10px #ffffff;
+	}
+
+	.Button:focus {
+		outline: 0px;
+	}
+	::-moz-focus-inner {border:0;}
 	
 	@media (min-width: 1024px) {
 		.title {

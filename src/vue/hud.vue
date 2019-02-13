@@ -1,6 +1,6 @@
 <template>
 	<div class="center-container">
-		<h1 class="name">{{ entity.name }}</h1>
+		<h1 class="name unselectable">{{ entity.name }}</h1>
 		<reload-bars v-bind:values="entity.reload.bars"/>
 	</div>
 </template>

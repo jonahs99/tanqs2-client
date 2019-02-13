@@ -1,6 +1,8 @@
 <template>
 	<div class='overlay'>
-		<title-screen v-if="showTitle"></title-screen>
+		<transition>
+			<title-screen v-if="showTitle"></title-screen>
+		</transition>
 		<hud v-bind:entity="entity" v-if="showHud"></hud>
 	</div>
 </template>
@@ -26,4 +28,18 @@
 	}
 </script>
 
+<style>
+	.unselectable {
+		-moz-user-select: none;
+		-webkit-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
 
+	.fade-enter-active, .fade-leave-active {
+		transition: opacity .5s;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+		opacity: 0;
+	}
+</style>

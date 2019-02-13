@@ -1,30 +1,32 @@
 <template>
-	<transition name="fade">
-		<div class="overlay" v-show="client && client.state == 'outside'">
-			<h1 class="title"> tanqs </h1>
-			<form v-on:submit.prevent>
-				<input type="text" placeholder="enter nickname"></input>
-				<button id="join" v-on:click="join">join!</button>
-			</form>
-			<div class="spacer"></div>
-		</div>
-	</transition>
+	<div class="center-container">
+		<h1 class="title"> tanqs </h1>
+		<form v-on:submit.prevent="submitJoin">
+			<input type="text" class="Text" placeholder="enter a nickname" v-model="nickname">
+			<input type="submit" class="Button" id="join" value="join!">
+		</form>
+		<div class="spacer"></div>
+	</div>
 </template>
 
 <script>
 	export default {
-		name: 'overlay',
-		data: () => ({client: null}),
+		name: 'title-screen',
+		data: () => ({
+			nickname: '',
+		}),
 		methods: {
-			join: function (evt) {
-				this.$emit('join')	
+			submitJoin: function() {
+				this.$root.$emit('join', {
+					name: this.nickname, 
+				})
 			}
 		}
 	}
 </script>
 
 <style scoped>
-	.overlay {
+	.center-container {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -35,15 +37,6 @@
 		flex-direction: column;	
 		justify-content: center;
 		align-items: center;
-	}
-	.fade-enter-active {
-		transition: opacity 0.5s;
-	}
-	.fade-leave-active {
-		transition: opactity 0.2s;
-	}
-	.fade-enter, .fade-leave-to {
-		opacity: 0;
 	}
 
 	.spacer {
@@ -58,21 +51,23 @@
 
 		color: #eee;
 		text-shadow: rgba(0, 0, 0, 0.5) 0px 4px;
+
+		user-select: none;
 	}
 
 	form {
 		padding-left: 5%;
 	}
 
-	input[type="text"] {
+	.Text {
 		width: 600px;
 
-		background: rgba(255, 255, 255, 0.05);
+		background: rgba(255, 255, 255, 0.1);
 		border: none;
 		border-radius: 500px;
 		color: #eee;
 
-		font-size: 62px;
+		font-size: 42px;
 		font-family: inherit;
 
 		padding: 8px;
@@ -81,17 +76,17 @@
 	}
 
 	::placeholder {
-		color: rgba(255, 255, 255, 0.5);
+		color: #aaa;
 	}
 
-	button {
+	.Button {
 		position: relative;
 		top: -5px;
 		left: -10%;
 
 		padding: 8px;
-		padding-left: 32px;
-		padding-right: 32px;
+		padding-left: 64px;
+		padding-right: 64px;
 
 		background: #3cf1ab;
 		box-shadow: 0 7px 0 #009058;
@@ -100,10 +95,16 @@
 		border-radius: 500px;
 		color: #eee;
 
-		font-size: 62px;
+		font-size: 42px;
 		font-family: inherit;
 	}
-
+	
+	.Button:hover {
+		background: #3dffb7;
+		box-shadow: 0 0 10px #a4ffb5, 0 7px 0 #009058;
+		text-shadow: 0 3px 0 #00a269, 0 0 10px #ffffff;
+	}
+	
 	@media (min-width: 1024px) {
 		.title {
 			font-size: 248px;

@@ -49,7 +49,7 @@ export default class Renderer {
 			return
 		}
 
-		if (view.mode == 'follow') {
+		if (view.mode == 'control' || view.mode == 'follow') {
 			const entity = state.entities[view.entity]
 			ctx.translate(-entity.pos[0], -entity.pos[1])
 			return

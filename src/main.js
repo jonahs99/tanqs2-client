@@ -18,8 +18,7 @@ net.on('open', () => {
 net.on('init', (msg) => {
 	console.log('init event received:')
 
-	UI.client = state._state.client
-	UI.$on('join', () => { net.send('join', {}) })
+	UI.$on('join', (msg) => { net.send('join', msg) })
 
 	requestAnimationFrame(render)
 })
@@ -35,6 +34,12 @@ net.connect()
 
 function render() {
 	const frame = state.get_state()
-	if (frame) renderer.render(frame)
+	if (frame) {
+		UI.state = frame.client.state
+		UI.entity = frame.client.view.mode == 'control' ?
+			frame.entities[frame.client.view.entity] : null
+
+		renderer.render(frame)
+	}
 	requestAnimationFrame(render)
 }

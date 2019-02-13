@@ -1,8 +1,12 @@
 import Vue from 'vue'
-import App from './vue/overlay.vue'
+import App from './vue/app.vue'
 
-const AppComponent = Vue.extend(App)
+//const app = new Vue({
+//	el: '#app',
+//	template: '<App/>',
+//	components: { App },
+//})
 
-const app = new AppComponent().$mount('#app')
+const app = new Vue(App).$mount('#app')
 
 export default app

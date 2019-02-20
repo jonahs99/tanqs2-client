@@ -17,8 +17,8 @@ net.on('open', () => {
 
 net.on('init', (msg) => {
 	console.log('init event received:')
+	net.once('diff', console.log)
 
-	UI.$on('join', (msg) => { net.send('join', msg) })
 
 	requestAnimationFrame(render)
 })
@@ -28,7 +28,8 @@ net.on('close', () => {
 })
 
 net.on('init', console.log)
-net.once('diff', console.log)
+
+UI.$on('join', (msg) => { net.send('join', msg) })
 
 net.connect()
 

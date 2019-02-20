@@ -14,6 +14,9 @@ export default class State {
 		net.on('init', data => {
 			this._timer.add_sync(data.time)
 			this._state = data.state
+			this._start_time = 0
+			this._end_time = 0
+			this._diff_buffer = []
 		})
 
 		net.on('diff', data => {

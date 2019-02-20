@@ -5,6 +5,7 @@ const styles = {
 	'green':	{fillStyle: '#79daac', strokeStyle: '#30ad72', lineWidth: 4, lineJoin: 'round'},
 	'yellow':	{fillStyle: '#daac79', strokeStyle: '#ad7230', lineWidth: 4, lineJoin: 'round'},
 	'blast':	{fillStyle: 'rgba(255, 255, 255, 0.2)', strokeStyle: '#eee', lineWidth: 3},
+	'wall':		{fillStyle: '#333', strokeStyle: '#ccc', lineWidth: 4, lineJoint: 'round'},
 }
 
 module.exports = styles

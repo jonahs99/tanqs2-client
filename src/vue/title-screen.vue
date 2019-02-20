@@ -2,7 +2,7 @@
 	<div class="center-container">
 		<h1 class="title unselectable"> tanqs </h1>
 		<form v-on:submit.prevent="submitJoin">
-			<input type="text" class="Text" placeholder="enter a nickname" v-model="nickname">
+			<input type="text" class="Text" placeholder="enter a nickname" autofocus v-model="nickname">
 			<input type="submit" class="Button" id="join" value="join!">
 		</form>
 		<div class="spacer"></div>

@@ -3,6 +3,7 @@
 		<transition>
 			<title-screen v-if="showTitle"></title-screen>
 		</transition>
+
 		<hud v-bind:entity="entity" v-if="showHud"></hud>
 	</div>
 </template>
@@ -29,6 +30,10 @@
 </script>
 
 <style>
+	body {
+		background: black;
+	}
+
 	.unselectable {
 		-moz-user-select: none;
 		-webkit-user-select: none;
